@@ -36,9 +36,11 @@ public class BossBarCountdown {
         return false;
     }
 
-    private Component replacePlaceholder(Component component, @RegExp String placeholder, String replacement) {
+    private Component replacePlaceholder(Component component, String placeholder, String replacement) {
+        // Escape special regex characters in the placeholder
+        @RegExp String escapedPlaceholder = java.util.regex.Pattern.quote(placeholder);
         return component.replaceText(builder -> {
-            builder.match(placeholder)
+            builder.match(escapedPlaceholder)
                     .replacement(replacement);
         });
     }

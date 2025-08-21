@@ -22,6 +22,7 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly "dev.jorel:commandapi-bukkit-core:10.1.0"
+    compileOnly 'net.dmulloy2:ProtocolLib:5.4.0'
 }
 
 tasks {
