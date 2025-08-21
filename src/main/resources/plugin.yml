@@ -4,7 +4,7 @@ main: dev.piny.pineLib.PineLib
 api-version: '1.21'
 prefix: PineLib
 authors: [ Piny ]
-description: Yet another library plugin
+description: A modern minecraft plugin library designed with simplicity in mind while still offering powerful features.
 website: https://github.com/NotPiny/PineLib
 softdepend:
   - CommandAPI # Mostly used for debugging purposes
