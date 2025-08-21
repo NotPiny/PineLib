@@ -1,0 +1,2 @@
+# Whether to enable testing commands and verbose output. CommandAPI has to be installed for the test commands to be available.
+debug: false

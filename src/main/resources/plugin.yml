@@ -1,0 +1,11 @@
+name: PineLib
+version: '1.0-SNAPSHOT'
+main: dev.piny.pineLib.PineLib
+api-version: '1.21'
+prefix: PineLib
+authors: [ Piny ]
+description: Yet another library plugin
+website: https://github.com/NotPiny/PineLib
+softdepend:
+  - CommandAPI # Mostly used for debugging purposes
+  - ProtocolLib # Opening anvil menus, and other things (only required for some features)
