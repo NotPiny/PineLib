@@ -19,7 +19,7 @@ Placeholders are a simple template you can use to display information within the
 - `raw_progress` - `percentage` but represented as a number between 0 and 1.
 
 # Installation
-To utilize PineLib, you need to first download the jar file from the [releases tab](https://github.com/NotPiny/PineLib/releases) or from the [modrinth page](https://modrinth.com/plugin/pinelib/versions). Once you have the jar file, place it in your server's `plugins` folder. Now that we have the library loaded on the server lets include it in our plugin. To do this, you will need to put the jar file in your plugin's `libs` folder. If you don't have a `libs` folder, you can create one. Once you have the jar file in the `libs` folder, you will need to add the following to your `plugin.yml` fil e:
+To utilize PineLib, you need to first download the jar file from the [releases tab](https://github.com/NotPiny/PineLib/releases) or from the [modrinth page](https://modrinth.com/plugin/pinelib/versions). Once you have the jar file, place it in your server's `plugins` folder. Now that we have the library loaded on the server lets include it in our plugin. To do this, you will need to put the jar file in your plugin's `libs` folder. If you don't have a `libs` folder, you can create one. Once you have the jar file in the `libs` folder, you will need to add the following to your `plugin.yml` file:
 
 ```yaml
 name: PineLibUser
