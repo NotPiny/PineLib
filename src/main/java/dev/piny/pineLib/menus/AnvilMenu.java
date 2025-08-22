@@ -150,11 +150,6 @@ public class AnvilMenu implements Listener {
 
                         setResultItem(customItem);
 
-                        // Debug info
-                        Bukkit.getLogger().info("Debug (AnvilMenu): Item type=" + customItem.getType() +
-                                ", HasMeta=" + customItem.hasItemMeta() +
-                                ", RenameText=" + renameText);
-
                         clickAction.accept(customItem);
 
                         if (autoClose) {
