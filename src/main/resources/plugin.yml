@@ -1,5 +1,5 @@
 name: PineLib
-version: '1.1-SNAPSHOT'
+version: '1.2.0-BETA'
 main: dev.piny.pineLib.PineLib
 api-version: '1.21'
 prefix: PineLib

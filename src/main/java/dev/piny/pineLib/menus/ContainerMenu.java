@@ -8,7 +8,9 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,6 +24,7 @@ public class ContainerMenu {
     private Inventory inventory;
     private HashMap<Integer, MenuItem> menuItems;
     private final Map<UUID, Listener> playerListeners = new HashMap<>();
+    private Consumer<InventoryCloseEvent> closeAction;
 
     /**
      * Generic container menu used for all inventory types that don't modify the items within (e.g. chest, crafter, dropper, etc.)
@@ -82,6 +85,21 @@ public class ContainerMenu {
      * @param menuItem the MenuItem to fill the inventory with
      */
     public void fill(MenuItem menuItem) {fill(menuItem, false, 0, inventory.getSize() - 1);}
+
+    /**
+     * Fills the inventory with the specified MenuItem.
+     * @param menuItem the MenuItem to fill the inventory with
+     * @param override if true, existing items will be replaced; if false, only empty slots will be filled
+     */
+    public void fill(MenuItem menuItem, boolean override) {fill(menuItem, override, 0, inventory.getSize() - 1);}
+
+    /**
+     * Fills a range of slots in the inventory with the specified MenuItem.
+     * @param menuItem the MenuItem to fill the inventory with
+     * @param override if true, existing items will be replaced; if false, only empty slots will be filled
+     * @param start the (0 based) starting slot index (inclusive)
+     */
+    public void fill(MenuItem menuItem, boolean override, int start) {fill(menuItem, override, start, inventory.getSize() - 1);}
 
     /**
      * Fills a range of slots in the inventory with the specified MenuItem.
@@ -165,6 +183,29 @@ public class ContainerMenu {
 
         // Open the inventory for the player
         player.openInventory(inventory);
+    }
+
+    /**
+     * Sets an action to be performed when the inventory is closed by any player.
+     * @param closeAction the action to perform on inventory close
+     */
+    public void onClose(Consumer<InventoryCloseEvent> closeAction) {
+        this.closeAction = closeAction;
+        // Register a global listener if not already registered
+        if (!playerListeners.containsKey(UUID.fromString("00000000-0000-0000-0000-000000000000"))) {
+            Listener listener = new Listener() {
+                @EventHandler
+                public void onInventoryClose(InventoryCloseEvent event) {
+                    if (Objects.equals(event.getInventory(), inventory)) {
+                        if (ContainerMenu.this.closeAction != null) {
+                            ContainerMenu.this.closeAction.accept(event);
+                        }
+                    }
+                }
+            };
+            playerListeners.put(UUID.fromString("00000000-0000-0000-0000-000000000000"), listener);
+            Bukkit.getPluginManager().registerEvents(listener, PineLib.getInstance());
+        }
     }
 
     /**
