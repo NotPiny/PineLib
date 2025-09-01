@@ -23,7 +23,7 @@ jobs:
       - name: Publish plugin
         uses: Kira-NT/mc-publish@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_RELEASE_TOKEN }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           modrinth-id: WyvElY84
           
